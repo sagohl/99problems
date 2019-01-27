@@ -1,0 +1,49 @@
+#include <iostream>
+/* 1.0 Create an algorithm which takes as input two distinct integers num1 and num2
+ * and returns the product of the two using only addition.
+ * Your solution may be iterative or recursive.
+*/
+
+int productByRecursion(int num1, int num2, int count2num2, int sum) {
+
+    // Base-case
+    // if num2 hit count2num2, then end of times num1 adds to sum.
+    if (num2 == count2num2) {
+        return sum;
+    }
+
+    // Add num1 to sum for each recursion that takes place.
+    // Decrement num2 by 1 for each recursion that takes place.
+    sum += num1;
+    count2num2++;
+
+    // call itself i.e. recursion
+    return productByRecursion(num1, num2, count2num2, sum);
+}
+
+
+int main() {
+
+    // Take the input of 2 integers by the user (un-validated data input)
+    int num1, num2, count2num2, sum;
+    std::cout << "Enter your first number." << std::endl;
+    std::cin >> num1;
+    std::cout << "Enter your second number." << std::endl;
+    std::cin >> num2;
+
+    // If num1 is less than num2, swap num1 with num2 so num2 is the lower value.
+    // num2 will reflect the recursion count, which will now be at the lesser count of the 2 numbers
+    if (num1 < num2) {
+        num1 = num1 + num2;
+        num2 = num1 - num2;
+        num1 = num1 - num2;
+    }
+
+    // rvSum is the product of the 2 inputs
+    // print the number
+    int rvSum = productByRecursion(num1, num2, count2num2, sum);
+    std::cout << rvSum;
+
+    // exit
+    return 0;
+}
